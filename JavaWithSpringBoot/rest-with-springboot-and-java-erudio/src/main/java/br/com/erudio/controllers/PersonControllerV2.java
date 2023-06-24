@@ -19,8 +19,8 @@ import br.com.erudio.data.vo.v2.PersonVOv2;
 import br.com.erudio.services.PersonServices;
 
 @RestController
-@RequestMapping("/person/v1")
-public class PersonController {
+@RequestMapping("/person/v2")
+public class PersonControllerV2 {
 
 	@Autowired
 	PersonServices personService;
@@ -43,13 +43,13 @@ public class PersonController {
 
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PersonVO create(@RequestBody PersonVO person) {
+	public PersonVOv2 createv2(@RequestBody PersonVOv2 person) {
 		
-		return personService.create(person);
+		return personService.createv2(person);
 		
 	}
 
-
+	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public PersonVO update(@RequestBody PersonVO person) {
 		
