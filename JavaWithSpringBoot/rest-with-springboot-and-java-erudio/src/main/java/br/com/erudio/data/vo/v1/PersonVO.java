@@ -23,7 +23,7 @@ public class PersonVO implements Serializable {
 	
 	private String address;
 	
-	@JsonIgnore
+	//@JsonIgnore
 	private String gender;
 	
 	
