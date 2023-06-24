@@ -1,7 +1,7 @@
 INSERT INTO `person` VALUES 
-	(1,'Alameda 2517','Manoel','Masculino','Genoíno'),
-	(2,'Rua 325','Leonardo','Masculino','DaVinci'),
-	(4,'Detroit','Alex','Masculino','Murphy'),
-	(6,'Japão','Speed','Masculino','Racer'),
-	(7,'África do Sul','Nelson','Masculino','Mandela'),
-	(8,'Croácia','Nikola','Masculino','Tesla');
+	(1,'Manoel','Genoíno','Alameda 2517','Masculino'),
+	(2,'Leonardo','DaVinci','Rua 325','Masculino'),
+	(4,'Alex','Murphy','Detroit','Masculino'),
+	(6,'Speed','Racer','Japão','Masculino'),
+	(7,'Nelson','Mandela','África do Sul','Masculino'),
+	(8,'Nikola','Tesla','Croácia','Masculino');
