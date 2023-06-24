@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.erudio.data.vo.v1.PersonVO;
-import br.com.erudio.data.vo.v2.PersonVOv2;
 import br.com.erudio.services.PersonServices;
 
 @RestController
@@ -26,7 +25,7 @@ public class PersonController {
 	PersonServices personService;
 
 
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public List<PersonVO> findByAll() throws Exception {
 
 		return personService.findAll();
@@ -34,7 +33,7 @@ public class PersonController {
 	}
 
 
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public PersonVO findById(@PathVariable(value = "id") Long id) throws Exception {
 
 		return personService.findById(id);
@@ -42,7 +41,8 @@ public class PersonController {
 	}
 
 
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, 
+			     produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public PersonVO create(@RequestBody PersonVO person) {
 		
 		return personService.create(person);
@@ -50,7 +50,8 @@ public class PersonController {
 	}
 
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }, 
+			    produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public PersonVO update(@RequestBody PersonVO person) {
 		
 		return personService.update(person);
