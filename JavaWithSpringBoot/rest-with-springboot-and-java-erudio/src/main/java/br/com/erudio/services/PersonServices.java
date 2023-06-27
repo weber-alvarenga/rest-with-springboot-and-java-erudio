@@ -1,11 +1,15 @@
 package br.com.erudio.services;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.erudio.controllers.PersonController;
 import br.com.erudio.data.vo.v1.PersonVO;
 import br.com.erudio.data.vo.v2.PersonVOv2;
 import br.com.erudio.exceptions.ResourceNotFoundException;
@@ -27,32 +31,59 @@ public class PersonServices {
 	
 	
 	
-	public List<PersonVO> findAll() {
+	public List<PersonVO> findAll() throws Exception {
 		
 		logger.info("Listando todas as pessoas.");
 		
-		return DozerMapper.parseObjectsList(repository.findAll(), PersonVO.class);
+		List<PersonVO> persons = DozerMapper.parseObjectsList(repository.findAll(), PersonVO.class);
+
+		persons
+			.stream()
+			.forEach(p -> {
+				try {
+					p.add(linkTo(methodOn(PersonController.class).findById(p.getKey())).withSelfRel());
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			});
+		
+		return persons;
+		
+		/*
+		List<PersonVO> resultado = new ArrayList<PersonVO>();
+		
+		for (PersonVO personVO : persons) {
+			personVO.add(linkTo(methodOn(PersonController.class).findById(personVO.getKey())).withSelfRel());
+			resultado.add(personVO);
+		}
+		
+		return resultado;
+		*/
 	}
 
 
-	public PersonVO findById(Long id) {
+	public PersonVO findById(Long id) throws Exception {
 		
 		logger.info("Procurando pessoa pelo ID.");
 
 		Person personAux = repository.findById(id)
 								.orElseThrow(() -> new ResourceNotFoundException("Nenhum registro encontrado.")) ;
 		
-		return DozerMapper.parseObject(personAux, PersonVO.class);
+		PersonVO vo = DozerMapper.parseObject(personAux, PersonVO.class);
+		vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		return vo;
 	}
 
 	
-	public PersonVO create(PersonVO person) {
+	public PersonVO create(PersonVO person) throws Exception {
 		
 		logger.info("Inserindo uma pessoa.");
 		
 		Person personAux = DozerMapper.parseObject(person, Person.class);
 		
-		return DozerMapper.parseObject(repository.save(personAux), PersonVO.class);
+		PersonVO vo = DozerMapper.parseObject(repository.save(personAux), PersonVO.class);
+		vo.add(linkTo(methodOn(PersonController.class).findById(vo.getKey())).withSelfRel());
+		return vo;		
 	}
 
 	
@@ -66,11 +97,11 @@ public class PersonServices {
 	}
 	
 	
-	public PersonVO update(PersonVO person) {
+	public PersonVO update(PersonVO person) throws Exception {
 		
 		logger.info("Atualizando uma pessoa.");
 		
-		Person personBD = repository.findById(person.getId())
+		Person personBD = repository.findById(person.getKey())
 							.orElseThrow(() -> new ResourceNotFoundException("Nenhum registro encontrado.")) ;
 
 		personBD.setFirstName(person.getFirstName());
@@ -78,7 +109,10 @@ public class PersonServices {
 		personBD.setAddress(person.getAddress());
 		personBD.setGender(person.getGender());
 
-		return DozerMapper.parseObject(repository.save(personBD), PersonVO.class);
+		PersonVO vo = DozerMapper.parseObject(repository.save(personBD), PersonVO.class);
+		vo.add(linkTo(methodOn(PersonController.class).findById(person.getKey())).withSelfRel());
+		return vo;
+
 	}
 
 
