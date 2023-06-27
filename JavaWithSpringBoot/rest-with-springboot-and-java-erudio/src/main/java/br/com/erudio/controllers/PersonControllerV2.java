@@ -51,7 +51,7 @@ public class PersonControllerV2 {
 
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public PersonVO update(@RequestBody PersonVO person) {
+	public PersonVO update(@RequestBody PersonVO person) throws Exception {
 		
 		return personService.update(person);
 		
