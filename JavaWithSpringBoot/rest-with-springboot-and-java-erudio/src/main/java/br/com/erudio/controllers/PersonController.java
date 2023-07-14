@@ -60,7 +60,10 @@ public class PersonController {
 	}
 
 
+<<<<<<< HEAD
 	@CrossOrigin(origins = "http://localhost:8080")
+=======
+>>>>>>> main
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Find By Id", 
 	   description = "Recupera pessoa pelo ID.",
@@ -85,7 +88,10 @@ public class PersonController {
 	}
 
 
+<<<<<<< HEAD
 	@CrossOrigin(origins = {"http://localhost:8080", "http://erudio.com.br"})
+=======
+>>>>>>> main
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML }, 
 			     produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Create a person", 
