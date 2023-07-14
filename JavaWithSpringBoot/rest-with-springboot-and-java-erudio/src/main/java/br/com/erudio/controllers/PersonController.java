@@ -24,7 +24,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+<<<<<<< HEAD
 //@CrossOrigin(origins = "http://localhost:8080")	libera cross origin para o endereço especificado (especificar o endereço é opcional)
+=======
+>>>>>>> main
 @RestController
 @RequestMapping("/person/v1")
 @Tag(name = "Person", description = "Endpoints para gerenciar pessoas.")
