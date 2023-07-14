@@ -24,10 +24,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-<<<<<<< HEAD
+
 //@CrossOrigin(origins = "http://localhost:8080")	libera cross origin para o endereço especificado (especificar o endereço é opcional)
-=======
->>>>>>> main
 @RestController
 @RequestMapping("/person/v1")
 @Tag(name = "Person", description = "Endpoints para gerenciar pessoas.")
@@ -60,10 +58,8 @@ public class PersonController {
 	}
 
 
-<<<<<<< HEAD
+
 	@CrossOrigin(origins = "http://localhost:8080")
-=======
->>>>>>> main
 	@GetMapping(value = "/{id}", produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Find By Id", 
 	   description = "Recupera pessoa pelo ID.",
@@ -88,10 +84,7 @@ public class PersonController {
 	}
 
 
-<<<<<<< HEAD
 	@CrossOrigin(origins = {"http://localhost:8080", "http://erudio.com.br"})
-=======
->>>>>>> main
 	@PostMapping(consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML }, 
 			     produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Create a person", 
