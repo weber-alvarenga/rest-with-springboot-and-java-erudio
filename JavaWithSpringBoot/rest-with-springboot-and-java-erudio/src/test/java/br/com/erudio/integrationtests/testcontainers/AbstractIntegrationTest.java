@@ -28,7 +28,7 @@ public class AbstractIntegrationTest {
 		static Map<String, String> createConnectionConfiguration() {
 			
 			return Map.of(
-					"spring.datasource.url", mysql.getJdbcUrl().replace("localhost", "127.0.0.1"),
+					"spring.datasource.url", mysql.getJdbcUrl(),
 					"spring.datasource.username", mysql.getUsername(),
 					"spring.datasource.password", mysql.getPassword()
 					);
@@ -42,8 +42,8 @@ public class AbstractIntegrationTest {
 			
 			startContainers();
 			ConfigurableEnvironment environment = applicationContext.getEnvironment();
-			MapPropertySource testContainers = new MapPropertySource("testConstainers", (Map) createConnectionConfiguration());
-			environment.getPropertySources().addFirst(testContainers);
+			MapPropertySource testcontainers = new MapPropertySource("testcontainers", (Map) createConnectionConfiguration());
+			environment.getPropertySources().addFirst(testcontainers);
 			
 		}
 
