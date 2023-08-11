@@ -21,6 +21,8 @@ spring:
     show-sql: false
         
 springdoc:
-  paths-to-match: /**/v1/**
+  paths-to-match: 
+    - /**/v1/**
+    - /auth/**
   swagger-ui:
     use-root-path: true
