@@ -16,6 +16,7 @@ public class Startup {
 	public static void main(String[] args) {
 		SpringApplication.run(Startup.class, args);
 		
+		/* feito somente para gerar e imprimir as senhas
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
 		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000, SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 		
@@ -29,7 +30,7 @@ public class Startup {
 		
 		System.out.println("Senha 1" + senha1);
 		System.out.println("Senha 2" + senha2);
-		
+		*/
 	}
 
 }

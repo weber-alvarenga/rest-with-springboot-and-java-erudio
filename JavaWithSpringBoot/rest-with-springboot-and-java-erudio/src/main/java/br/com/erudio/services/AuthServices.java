@@ -54,5 +54,22 @@ public class AuthServices {
 	}
 	
 	
+	@SuppressWarnings("rawtypes")
+	public ResponseEntity refreshAccessToken(String username, String refreshToken) {
+		
+		// Pode-se autenticar o usuário novamente conforme nas duas primeiras linhas de signIn se desejar.
+		
+		User user = userRepository.findByUserName(username);
+		TokenVO tokenResponse = new TokenVO();
+		
+		if (user != null) {
+			tokenResponse = tokenProvider.refreshAccessToken(refreshToken);
+		} else {
+			throw new UsernameNotFoundException("Usuário " + username + " não encontrado.");
+		}
+		
+		return ResponseEntity.ok(tokenResponse);
+		
+	}
 	
 }
