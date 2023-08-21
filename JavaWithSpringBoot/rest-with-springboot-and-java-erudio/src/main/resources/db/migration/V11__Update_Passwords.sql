@@ -1,0 +1,2 @@
+update `users` set `password` = '68cec5769113b9d9abc0370b50abc55c35342b9dfc69a2559545b103910df4d0f207c27c216d3c8a' where user_name = 'leandro';
+update `users` set `password` = 'd86d99885481c551f903fd6e747b85e29eb801e8b2324baff2079816fa7023989268f62c65f40817' where user_name = 'flavio';
